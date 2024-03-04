@@ -1,5 +1,11 @@
 name: hello-world
-on: push
+on:
+  workflow_dispatch:
+    inputs:
+      repo-name:
+        description: 'GitHub Repo Name'
+        required: true
+        default: 'BhanupriyaH/test'
 jobs:
   my-job:
     runs-on: ubuntu-latest
@@ -17,7 +23,7 @@ jobs:
       - name: Checkout other repos
         uses: actions/checkout@v4
         with:
-          repository: BhanupriyaH/test
+          repository: ${{ github.event.inputs.repo-name }}
           path: test
 
       - name: get Branch
