@@ -20,8 +20,11 @@ jobs:
           with:
             repository: ${{ matrix.repo_names}}
             fetch-depth: 0
+            path: ${{ matrix.repo_names}}
         - name: get Branch
-          run: git branch -r | grep main
+          run: |
+            cd ${{ matrix.repo_names}}
+            git branch -r | grep main
   test-for-loop:
     runs-on: ubuntu-latest
     steps:
