@@ -7,11 +7,16 @@ on:
         required: true
         default: 'BhanupriyaH/test'
 jobs:
+  loopcheck:
+    strategy:
+      matrix:
+        repo_names: [BhanupriyaH/test,BhanupriyaH/parent]
+    runs-on: ubuntu-latest
   my-job:
     runs-on: ubuntu-latest
     steps:
-      - name: my-step
-        run: echo "Hello World!"
+      - name: print output
+        run: echo ${{ matrix.repo_names}}
   second-job:
     runs-on: ubuntu-latest
     steps:
