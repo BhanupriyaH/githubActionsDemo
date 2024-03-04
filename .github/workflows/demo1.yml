@@ -12,8 +12,6 @@ jobs:
       matrix:
         repo_names: [BhanupriyaH/test,BhanupriyaH/parent]
     runs-on: ubuntu-latest
-  my-job:
-    runs-on: ubuntu-latest
     steps:
       - name: print output
         run: echo ${{ matrix.repo_names}}
