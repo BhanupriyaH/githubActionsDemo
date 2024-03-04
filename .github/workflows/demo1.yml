@@ -18,9 +18,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: BhanupriyaH/test
-          path: master
+          path: test
 
       - name: get Branch
         run: |
+          cd test
           export BRANCHES=$(git branch -r)
           echo $BRANCHES | grep main
