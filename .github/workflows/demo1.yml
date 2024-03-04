@@ -19,11 +19,9 @@ jobs:
           uses: actions/checkout@v4
           with:
             repository: ${{ matrix.repo_names}}
-  
+            fetch-depth: 0
         - name: get Branch
-          run: |
-            export BRANCHES=$(git branch -r)
-            echo $BRANCHES | grep main
+          run: git branch -r | grep main
   test-for-loop:
     runs-on: ubuntu-latest
     steps:
