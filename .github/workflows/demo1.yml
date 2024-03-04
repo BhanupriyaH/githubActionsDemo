@@ -11,3 +11,16 @@ jobs:
     steps:
       - name: test-step
         run: echo "Hi Bhanu..."
+  clone-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: main
+          
+      - name: Checkout other repos
+        uses: actions/checkout@v4
+        with:
+          repository: BhanupriyaH/test
+          path: master
