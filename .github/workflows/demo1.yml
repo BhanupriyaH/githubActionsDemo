@@ -31,3 +31,11 @@ jobs:
           cd test
           export BRANCHES=$(git branch -r)
           echo $BRANCHES
+      
+      - name: Mendax Loop through numbers
+        id: loop
+        run: |
+          for i in 1 2 3 4 5
+          do
+            echo "Mendax Current number: $i"
+          done
