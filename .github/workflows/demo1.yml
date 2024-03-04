@@ -1,4 +1,4 @@
-name: hello-world
+name: check if branch exists
 on:
   workflow_dispatch:
     inputs:
@@ -7,34 +7,30 @@ on:
         required: true
         default: 'BhanupriyaH/test'
 jobs:
+  test-loop:
+    runs-on: ubuntu-latest
   loopcheck:
-    strategy:
-      matrix:
-        repo_names: [BhanupriyaH/test,BhanupriyaH/parent]
+      strategy:
+        matrix:
+          repo_names: [BhanupriyaH/test,BhanupriyaH/parent]
+      runs-on: ubuntu-latest
+      steps:
+        - name: print output
+          run: echo ${{ matrix.repo_names}}
+        - name: Checkout repos
+          uses: actions/checkout@v4
+          with:
+            repository: ${{ matrix.repo_names}}
+            path: test
+  
+        - name: get Branch
+          run: |
+            cd test
+            export BRANCHES=$(git branch -r)
+            echo $BRANCHES | grep main
+  test-for-loop:
     runs-on: ubuntu-latest
     steps:
-      - name: print output
-        run: echo ${{ matrix.repo_names}}
-  second-job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: test-step
-        run: echo "Hi Bhanu..."
-  clone-job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout other repos
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ github.event.inputs.repo-name }}
-          path: test
-
-      - name: get Branch
-        run: |
-          cd test
-          export BRANCHES=$(git branch -r)
-          echo $BRANCHES
-      
       - name: Mendax Loop through numbers
         id: loop
         run: |
