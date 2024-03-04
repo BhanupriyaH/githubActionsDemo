@@ -24,7 +24,7 @@ jobs:
         - name: get Branch
           run: |
             cd ${{ matrix.repo_names}}
-            git branch -r | grep main
+            git branch -r
   test-for-loop:
     runs-on: ubuntu-latest
     steps:
