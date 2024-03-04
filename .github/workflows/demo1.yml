@@ -14,16 +14,13 @@ jobs:
   clone-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          path: main
-          
       - name: Checkout other repos
         uses: actions/checkout@v4
         with:
           repository: BhanupriyaH/test
           path: master
 
-      - name: list the contents of repo
-        run: ls
+      - name: get Branch
+        run: |
+          export BRANCHES=$(git branch -r)
+          echo $BRANCHES | grep main
