@@ -24,3 +24,6 @@ jobs:
         with:
           repository: BhanupriyaH/test
           path: master
+
+      - name: list the contents of repo
+        run: ls
