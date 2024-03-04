@@ -7,8 +7,6 @@ on:
         required: true
         default: 'BhanupriyaH/test'
 jobs:
-  test-loop:
-    runs-on: ubuntu-latest
   loopcheck:
       strategy:
         matrix:
