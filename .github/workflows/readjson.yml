@@ -20,7 +20,7 @@ jobs:
         with:
           file_path: 'sharelatex.json'
     outputs:
-      versions: ${{steps.prepare.outputs.versions}}
+      versions: ${{steps.prepare.outputs.repository}}
 
   sharelatex-base:
     needs: prepare-environment
@@ -28,6 +28,6 @@ jobs:
     # Create a job for each version
     strategy:
       matrix:
-        versions: ${{fromJson(needs.prepare-environment.outputs.versions)}}
+        versions: ${{fromJson(needs.prepare-environment.outputs.repository)}}
     steps:
-       - run: echo ${{matrix.versions.sha}}
+       - run: echo ${{matrix.repository.reponame}}
