@@ -1,0 +1,33 @@
+name: read-json
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  # Run when the versioning json file change
+  push:
+    branches: [readjson]
+    paths:
+      - 'sharelatex.json'
+
+jobs:
+  prepare-environment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - id: prepare
+        uses: ActionsTools/read-json-action@main
+        with:
+          file_path: 'sharelatex.json'
+    outputs:
+      versions: ${{steps.prepare.outputs.versions}}
+
+  sharelatex-base:
+    needs: prepare-environment
+    runs-on: ubuntu-latest
+    # Create a job for each version
+    strategy:
+      matrix:
+        versions: ${{fromJson(needs.prepare-environment.outputs.versions)}}
+    steps:
+       - run: echo ${{matrix.versions.sha}}
