@@ -28,6 +28,6 @@ jobs:
     # Create a job for each version
     strategy:
       matrix:
-        versions: ${{fromJson(needs.prepare-environment.outputs.repository)}}
+        repository: ${{fromJson(needs.prepare-environment.outputs.repository)}}
     steps:
        - run: echo ${{matrix.repository.reponame}}
