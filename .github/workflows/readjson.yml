@@ -20,7 +20,7 @@ jobs:
         with:
           file_path: 'sharelatex.json'
     outputs:
-      versions: ${{steps.prepare.outputs.repository}}
+      repository: ${{steps.prepare.outputs.repository}}
 
   sharelatex-base:
     needs: prepare-environment
